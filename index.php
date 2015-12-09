@@ -21,18 +21,18 @@
   </head>
   <body background="img/bg.jpg">
     <div class="row" style="color:white;">
-      <form class="screen-centered" type="post">
+      <form class="screen-centered" action="search.php" method="post">
         <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for...">
+        <input type="text" name="keyword" class="form-control" placeholder="Search for...">
         <span class="input-group-btn">
-          <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
         </span>
         </div>
         <hr>
         <h5>Choose the websites to search:</h5>
-        <input type="checkbox" value="checked" aria-label="Twitter.com"><label>&nbsp;Twitter.com&nbsp;</label>
-        <input type="checkbox" aria-label="Zastone.ba"><label>&nbsp; Zastone.ba&nbsp;</label>
-        <input type="checkbox" aria-label="Point.zastone.ba"><label>&nbsp; Point.zastone.ba&nbsp;</label>
+        <input type="checkbox" name="website" value="http://www.twitter.com"><label>&nbsp;Twitter.com&nbsp;</label>
+        <input type="checkbox" name="website" value="http://www.zastone.ba" checked><label>&nbsp; Zastone.ba&nbsp;</label>
+        <input type="checkbox" name="website" value="http://point.zastone.ba" checked><label>&nbsp; Point.zastone.ba&nbsp;</label>
       </form>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
