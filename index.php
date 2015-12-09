@@ -22,6 +22,8 @@
   <body background="img/bg.jpg">
     <div class="row" style="color:white;">
       <form class="screen-centered" action="search.php" method="post">
+        <h2 align="center"> SocialSearchEngine </h2>
+      </br>
         <div class="input-group">
         <input type="text" name="keyword" class="form-control" placeholder="Search for...">
         <span class="input-group-btn">
@@ -29,10 +31,12 @@
         </span>
         </div>
         <hr>
-        <h5>Choose the websites to search:</h5>
-        <input type="checkbox" name="website" value="http://www.twitter.com"><label>&nbsp;Twitter.com&nbsp;</label>
+        <h5 align="center">Choose the websites to search:</h5>
+        <p align="center">
+        <input  type="checkbox" name="website" value="http://www.twitter.com"><label>&nbsp;Twitter.com&nbsp;</label>
         <input type="checkbox" name="website" value="http://www.zastone.ba" checked><label>&nbsp; Zastone.ba&nbsp;</label>
         <input type="checkbox" name="website" value="http://point.zastone.ba" checked><label>&nbsp; Point.zastone.ba&nbsp;</label>
+        </p>
       </form>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

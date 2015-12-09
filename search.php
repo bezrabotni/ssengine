@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SearchEngine</a>
+          <a class="navbar-brand" href="#">SocialSearchEngine</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -73,8 +73,10 @@
       the keywords specified
       It cascades the results based on what has been searched
       It displays only the results with the links
-      It uses a function search site from the search php file-->
-      <div class="col-md-8" style="background-color:white;">
+      It uses a function search site from the search php file
+
+      -->
+      <div class="col-md-8" style="background-color: rgba(255, 255, 255, 0.79);">
     <?php
     include 'functions.php';
     if ($_POST['keyword']==null || !isset($_POST['website']))

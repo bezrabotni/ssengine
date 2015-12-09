@@ -12,11 +12,15 @@ class MyCrawler extends PHPCrawler
 {
   function handleDocumentInfo($DocInfo)
   {
+    global $query;
     // Just detect linebreak for output ("\n" in CLI-mode, otherwise "<br>").
     if (PHP_SAPI == "cli") $lb = "\n";
     else $lb = "<br />";
-    $query= '/(.*diskriminaciju.*)/';
-    preg_match($query,$DocInfo->content,$matches,PREG_OFFSET_CAPTURE, 3);
+    $before="/(.*";
+    $after=".*)/";
+    $q=$before.$query.$after;
+    //$query= '/(.*diskriminaciju.*)/';
+    preg_match($q,$DocInfo->content,$matches,PREG_OFFSET_CAPTURE, 3);
     if ($matches)
     {
       print_r ($matches);
