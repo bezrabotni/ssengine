@@ -5,6 +5,13 @@ set_time_limit(10000);
 
 // Inculde the phpcrawl-mainclass
 include("libs/PHPCrawler.class.php");
+
+function getTextBetweenTags($string, $tagname) {
+    preg_match( "/\<{$tagname}\>(.*)\<\/{$tagname}\>/", $string, $matches);
+    return $matches[1];
+}
+
+
 function searchsite($url,$query)
 {
 // Extend the class and override the handleDocumentInfo()-method
@@ -13,6 +20,7 @@ class MyCrawler extends PHPCrawler
   function handleDocumentInfo($DocInfo)
   {
     global $query;
+    global $url;
     // Just detect linebreak for output ("\n" in CLI-mode, otherwise "<br>").
     if (PHP_SAPI == "cli") $lb = "\n";
     else $lb = "<br />";
@@ -21,23 +29,23 @@ class MyCrawler extends PHPCrawler
     $q=$before.$query.$after;
     //$query= '/(.*diskriminaciju.*)/';
     preg_match($q,$DocInfo->content,$matches,PREG_OFFSET_CAPTURE, 3);
-    if ($matches)
+    if ($matches && $DocInfo->received == true)
     {
-      print_r ($matches);
-      // Print the URL and the HTTP-status-Code
-      echo "Page requested: ".$DocInfo->url." ".$lb;
-
-      // Print if the content of the document was be recieved or not
-      if ($DocInfo->received == true)
-        echo "Content received: ".$DocInfo->bytes_received." bytes".$lb;
-      else
-        echo "Content not received".$lb;
-     }
-
+      echo "<div style='margin-left:10px'>";
+      //$titlexpr="/<title[^>]*>(.*?)</title>/";
+      //preg_match($titlexpr,$DocInfo->content,$sitetitle,PREG_OFFSET_CAPTURE, 3);
+      $sitetitle=getTextBetweenTags($DocInfo->content, "title");
+      echo "<a href='".$DocInfo->url."'> <h4>".$sitetitle."</h4></a>";
+      echo "<p style='color:green;'>".$DocInfo->url." - (".$url.") </p>";
+      $desc=implode("...",$matches[0]);
+      $sitetitle="~<[a-zA-Z]*>|</[a-zA-Z]*>~";
+      preg_replace($sitetitle, " ", $desc);
+      print_r($desc);
+      echo "<hr style='color:border-top: 1px solid #aaaaaa;'>";
+      echo "</div>";
+    }
     // Now you should do something with the content of the actual
     // received page or file ($DocInfo->source), we skip it in this example
-
-    echo $lb;
 
     flush();
   }
@@ -82,4 +90,6 @@ class MyCrawler extends PHPCrawler
   echo "Bytes received: ".$report->bytes_received." bytes".$lb;
   echo "Process runtime: ".$report->process_runtime." sec".$lb;
 }
+
+
 ?>
